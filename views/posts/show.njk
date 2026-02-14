@@ -1,0 +1,36 @@
+{% extends "layouts/main.njk" %}
+
+{% block description %}{{ post.title }}{% endblock %}
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <a href="/posts" class="btn btn-secondary btn-sm">← Volver a publicaciones</a>
+</div>
+
+<article class="card">
+  <h1>{{ post.title }}</h1>
+  <div class="post-meta">
+    <span class="post-author">Autor: <strong>{{ post.author.name if post.author else 'Desconocido' }}</strong></span>
+    <span class="post-date">Publicado: {{ post.createdAt | date }}</span>
+    {% if post.updatedAt and post.updatedAt != post.createdAt %}
+      <span class="post-date">Actualizado: {{ post.updatedAt | date }}</span>
+    {% endif %}
+  </div>
+  <hr>
+  <div class="post-body">
+    <p>{{ post.content }}</p>
+  </div>
+  <hr>
+  <div class="post-actions">
+    {% if session and session.userId and (session.userId == post.userId or session.userRole == 'admin') %}
+      <a href="/posts/{{ post.id }}/edit" class="btn btn-warning">Editar</a>
+    {% endif %}
+    {% if session and (session.userRole == 'admin' or session.userRole == 'editor') %}
+      <form action="/posts/{{ post.id }}/delete" method="POST" class="inline-form" onsubmit="return confirm('¿Estás seguro de eliminar esta publicación?')">
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+      </form>
+    {% endif %}
+  </div>
+</article>
+{% endblock %}

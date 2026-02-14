@@ -1,0 +1,28 @@
+{% extends "layouts/main.njk" %}
+
+{% block description %}Editar publicación{% endblock %}
+{% block title %}Editar: {{ post.title }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Editar Publicación</h1>
+  <p class="subtitle">Formulario HTML con endpoint <code>POST /posts/{{ post.id }}</code></p>
+</div>
+
+<div class="card form-card">
+  <form action="/posts/{{ post.id }}" method="POST" class="form">
+    <div class="form-group">
+      <label for="title" class="form-label">Título</label>
+      <input type="text" id="title" name="title" class="form-input" value="{{ post.title }}" required minlength="3" maxlength="200">
+    </div>
+    <div class="form-group">
+      <label for="content" class="form-label">Contenido</label>
+      <textarea id="content" name="content" class="form-textarea" rows="8" required>{{ post.content }}</textarea>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Actualizar</button>
+      <a href="/posts/{{ post.id }}" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

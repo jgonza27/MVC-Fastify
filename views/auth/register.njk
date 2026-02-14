@@ -1,0 +1,34 @@
+{% extends "layouts/main.njk" %}
+
+{% block description %}Registro de usuario{% endblock %}
+{% block title %}Registro{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Crear Cuenta</h1>
+  <p class="subtitle">Ruta: <code>POST /register</code></p>
+</div>
+
+<div class="card form-card">
+  <form action="/register" method="POST" class="form">
+    <div class="form-group">
+      <label for="name" class="form-label">Nombre</label>
+      <input type="text" id="name" name="name" class="form-input" placeholder="Tu nombre completo" required minlength="2" maxlength="100">
+    </div>
+    <div class="form-group">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" required>
+    </div>
+    <div class="form-group">
+      <label for="password" class="form-label">Contraseña</label>
+      <input type="password" id="password" name="password" class="form-input" placeholder="Mínimo 6 caracteres" required minlength="6">
+    </div>
+    <div class="form-group">
+      <label for="password_confirm" class="form-label">Confirmar Contraseña</label>
+      <input type="password" id="password_confirm" name="password_confirm" class="form-input" placeholder="Repite la contraseña" required minlength="6">
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+  </form>
+  <p class="form-footer">¿Ya tienes cuenta? <a href="/login">Inicia sesión aquí</a></p>
+</div>
+{% endblock %}

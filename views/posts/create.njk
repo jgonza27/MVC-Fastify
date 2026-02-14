@@ -1,0 +1,28 @@
+{% extends "layouts/main.njk" %}
+
+{% block description %}Crear nueva publicación{% endblock %}
+{% block title %}Nueva Publicación{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Nueva Publicación</h1>
+  <p class="subtitle">Formulario HTML con endpoint <code>POST /posts</code></p>
+</div>
+
+<div class="card form-card">
+  <form action="/posts" method="POST" class="form">
+    <div class="form-group">
+      <label for="title" class="form-label">Título</label>
+      <input type="text" id="title" name="title" class="form-input" placeholder="Título de la publicación" required minlength="3" maxlength="200">
+    </div>
+    <div class="form-group">
+      <label for="content" class="form-label">Contenido</label>
+      <textarea id="content" name="content" class="form-textarea" rows="8" placeholder="Escribe el contenido de tu publicación..." required></textarea>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Publicar</button>
+      <a href="/posts" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>
+{% endblock %}

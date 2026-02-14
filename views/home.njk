@@ -1,0 +1,68 @@
+{% extends "layouts/main.njk" %}
+
+{% block description %}Página principal de la aplicación MVC Fastify{% endblock %}
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <h1>Bienvenido a <span class="highlight">MVC Fastify</span></h1>
+  <p class="hero-subtitle">Aplicación backend con arquitectura Modelo-Vista-Controlador</p>
+  <div class="hero-actions">
+    <a href="/posts" class="btn btn-primary">Ver Publicaciones</a>
+    <a href="/about" class="btn btn-secondary">Más Información</a>
+  </div>
+</section>
+
+<section class="features">
+  <h2>Características de la Aplicación</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      
+      <h3>Rutas Estáticas y Dinámicas</h3>
+      <p>Rutas como <code>/about</code> (estática) y <code>/greet/:name</code> (dinámica).</p>
+      <a href="/greet/Jesus" class="feature-link">Probar ruta dinámica →</a>
+    </div>
+    <div class="feature-card">
+      
+      <h3>Controladores GET/POST</h3>
+      <p>Controladores organizados por recurso con endpoints GET y POST.</p>
+      <a href="/posts" class="feature-link">Ver publicaciones →</a>
+    </div>
+    <div class="feature-card">
+      
+      <h3>Formularios HTML</h3>
+      <p>Gestión de formularios con validación y mensajes flash.</p>
+      <a href="/register" class="feature-link">Probar registro →</a>
+    </div>
+    <div class="feature-card">
+      
+      <h3>Subida de Archivos</h3>
+      <p>Upload de archivos con validación de tipo y tamaño.</p>
+      <a href="/upload" class="feature-link">Subir archivo →</a>
+    </div>
+    <div class="feature-card">
+      
+      <h3>ORM con Sequelize</h3>
+      <p>Modelos, migraciones y consultas con Sequelize + SQLite.</p>
+    </div>
+    <div class="feature-card">
+      
+      <h3>Autenticación y Permisos</h3>
+      <p>Registro, login, sesiones y control de acceso por roles.</p>
+      <a href="/login" class="feature-link">Iniciar sesión →</a>
+    </div>
+    <div class="feature-card">
+      
+      <h3>Cookies</h3>
+      <p>Gestión de cookies del navegador: crear, leer y eliminar.</p>
+      <a href="/cookies" class="feature-link">Gestionar cookies →</a>
+    </div>
+    <div class="feature-card">
+      
+      <h3>Gestión de Errores</h3>
+      <p>Páginas de error personalizadas (404 y 500) con redirecciones.</p>
+      <a href="/error-test" class="feature-link">Probar error 500 →</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "layouts/main.njk" %}
+
+{% block description %}Saludo dinámico{% endblock %}
+{% block title %}Saludo a {{ name }}{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>¡Hola, <span class="highlight">{{ name | capitalize }}</span>!</h1>
+  <p class="subtitle">Ruta dinámica de ejemplo: <code>/greet/:name</code></p>
+</div>
+
+<div class="card">
+  <h2>Demostración de Ruta Dinámica</h2>
+  <p>Esta página utiliza el parámetro <code>:name</code> de la URL para generar contenido dinámico.</p>
+
+  <h3>Filtros de Nunjucks aplicados al nombre:</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Filtro</th>
+        <th>Código</th>
+        <th>Resultado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Original</td>
+        <td><code>{{ '{{ name }}' }}</code></td>
+        <td><strong>{{ name }}</strong></td>
+      </tr>
+      <tr>
+        <td>Mayúsculas</td>
+        <td><code>{{ '{{ name | upper }}' }}</code></td>
+        <td><strong>{{ name | upper }}</strong></td>
+      </tr>
+      <tr>
+        <td>Minúsculas</td>
+        <td><code>{{ '{{ name | lower }}' }}</code></td>
+        <td><strong>{{ name | lower }}</strong></td>
+      </tr>
+      <tr>
+        <td>Capitalizar</td>
+        <td><code>{{ '{{ name | capitalize }}' }}</code></td>
+        <td><strong>{{ name | capitalize }}</strong></td>
+      </tr>
+      <tr>
+        <td>Truncar (3)</td>
+        <td><code>{{ '{{ name | truncate(3) }}' }}</code></td>
+        <td><strong>{{ name | truncate(3) }}</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Prueba con otros nombres:</h3>
+  <div class="link-group">
+    <a href="/greet/Maria" class="btn btn-secondary">Saludar a María</a>
+    <a href="/greet/Carlos" class="btn btn-secondary">Saludar a Carlos</a>
+    <a href="/greet/Ana" class="btn btn-secondary">Saludar a Ana</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "layouts/main.njk" %}
+
+{% block description %}Inicio de sesión{% endblock %}
+{% block title %}Iniciar Sesión{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Iniciar Sesión</h1>
+  <p class="subtitle">Ruta: <code>POST /login</code></p>
+</div>
+
+<div class="card form-card">
+  <form action="/login" method="POST" class="form">
+    <div class="form-group">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" id="email" name="email" class="form-input" placeholder="tu@email.com" required>
+    </div>
+    <div class="form-group">
+      <label for="password" class="form-label">Contraseña</label>
+      <input type="password" id="password" name="password" class="form-input" placeholder="Tu contraseña" required>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
+  </form>
+
+  <div class="form-footer">
+    <p>¿No tienes cuenta? <a href="/register">Regístrate aquí</a></p>
+    <hr>
+    <p><strong>Usuarios de prueba:</strong></p>
+    <ul class="test-users">
+      <li><code>admin@example.com</code> / <code>admin123</code> (Admin)</li>
+      <li><code>editor@example.com</code> / <code>editor123</code> (Editor)</li>
+      <li><code>user@example.com</code> / <code>user123</code> (Usuario)</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

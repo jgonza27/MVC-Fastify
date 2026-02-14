@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Aplicación MVC con Fastify - {% block description %}Página principal{% endblock %}">
+  <title>{% block title %}MVC Fastify{% endblock %} | MVC Fastify</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="/" class="nav-brand">MVC Fastify</a>
+      <ul class="nav-links">
+        <li><a href="/" class="nav-link">Inicio</a></li>
+        <li><a href="/about" class="nav-link">Acerca de</a></li>
+        <li><a href="/posts" class="nav-link">Publicaciones</a></li>
+        <li><a href="/cookies" class="nav-link">Cookies</a></li>
+        {% if session and session.userId %}
+          <li><a href="/posts/create" class="nav-link">Nueva Publicación</a></li>
+          <li><a href="/upload" class="nav-link">Subir Archivo</a></li>
+          <li class="nav-user">
+            <span class="nav-user-info">{{ session.userName }} <span class="badge badge-{{ session.userRole }}">{{ session.userRole | upper }}</span></span>
+          </li>
+          <li><a href="/logout" class="nav-link btn-logout">Cerrar Sesión</a></li>
+        {% else %}
+          <li><a href="/login" class="nav-link">Iniciar Sesión</a></li>
+          <li><a href="/register" class="nav-link btn-register">Registrarse</a></li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+
+  <main class="container main-content">
+    {% if flash %}
+      {% if flash.success %}
+        <div class="alert alert-success">{{ flash.success }}</div>
+      {% endif %}
+      {% if flash.error %}
+        <div class="alert alert-error">{{ flash.error }}</div>
+      {% endif %}
+      {% if flash.info %}
+        <div class="alert alert-info">{{ flash.info }}</div>
+      {% endif %}
+    {% endif %}
+
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>MVC Fastify &copy; 2026 &mdash; Aplicación de ejemplo con patrón MVC</p>
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends "layouts/main.njk" %}
+
+{% block description %}Página no encontrada{% endblock %}
+{% block title %}404 - No Encontrado{% endblock %}
+
+{% block content %}
+<div class="error-page">
+  <div class="error-code">404</div>
+  <h1>Página No Encontrada</h1>
+  <p>La URL <code>{{ url }}</code> no existe en este servidor.</p>
+  <div class="error-actions">
+    <a href="/" class="btn btn-primary">Volver al Inicio</a>
+    <a href="/posts" class="btn btn-secondary">Ver Publicaciones</a>
+  </div>
+</div>
+{% endblock %}

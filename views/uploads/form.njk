@@ -1,0 +1,57 @@
+{% extends "layouts/main.njk" %}
+
+{% block description %}Subir archivo al servidor{% endblock %}
+{% block title %}Subir Archivo{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Subir Archivo</h1>
+  <p class="subtitle">Formulario multipart con endpoint <code>POST /upload</code></p>
+</div>
+
+<div class="card form-card">
+  <form action="/upload" method="POST" enctype="multipart/form-data" class="form">
+    <div class="form-group">
+      <label for="file" class="form-label">Seleccionar Archivo</label>
+      <input type="file" id="file" name="file" class="form-input form-file" accept="image/*,.pdf,.txt" required>
+      <small class="form-help">Formatos: JPEG, PNG, GIF, WebP, PDF, TXT. Máx: 5MB</small>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Subir Archivo</button>
+  </form>
+</div>
+
+{% if flash and flash.uploadedFile %}
+  <div class="card">
+    <h2>Archivo Subido</h2>
+    <table class="table">
+      <tbody>
+        <tr>
+          <td><strong>Nombre original:</strong></td>
+          <td>{{ flash.uploadedFile.name }}</td>
+        </tr>
+        <tr>
+          <td><strong>Guardado como:</strong></td>
+          <td>{{ flash.uploadedFile.savedAs }}</td>
+        </tr>
+        <tr>
+          <td><strong>Tamaño:</strong></td>
+          <td>{{ flash.uploadedFile.size }}</td>
+        </tr>
+        <tr>
+          <td><strong>Tipo:</strong></td>
+          <td>{{ flash.uploadedFile.type }}</td>
+        </tr>
+        <tr>
+          <td><strong>URL:</strong></td>
+          <td><a href="{{ flash.uploadedFile.url }}" target="_blank">{{ flash.uploadedFile.url }}</a></td>
+        </tr>
+      </tbody>
+    </table>
+    {% if flash.uploadedFile.type and flash.uploadedFile.type.startsWith('image/') %}
+      <div class="upload-preview">
+        <img src="{{ flash.uploadedFile.url }}" alt="Preview" class="upload-image">
+      </div>
+    {% endif %}
+  </div>
+{% endif %}
+{% endblock %}

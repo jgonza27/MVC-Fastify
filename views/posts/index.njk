@@ -1,0 +1,46 @@
+{% extends "layouts/main.njk" %}
+
+{% block description %}Lista de publicaciones{% endblock %}
+{% block title %}Publicaciones{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Publicaciones</h1>
+  <p class="subtitle">Consulta Sequelize: <code>Post.findAll({ include: User })</code></p>
+  {% if session and session.userId %}
+    <a href="/posts/create" class="btn btn-primary">Nueva Publicación</a>
+  {% endif %}
+</div>
+
+{% if posts.length === 0 %}
+  <div class="card">
+    <p class="text-center">No hay publicaciones todavía. ¡Sé el primero en crear una!</p>
+  </div>
+{% else %}
+  <div class="posts-grid">
+    {% for post in posts %}
+      <article class="card post-card">
+        <h2 class="post-title">
+          <a href="/posts/{{ post.id }}">{{ post.title }}</a>
+        </h2>
+        <p class="post-content">{{ post.content | truncate(150) }}</p>
+        <div class="post-meta">
+          <span class="post-author">Por: {{ post.author.name if post.author else 'Desconocido' }}</span>
+          <span class="post-date">{{ post.createdAt | date }}</span>
+        </div>
+        <div class="post-actions">
+          <a href="/posts/{{ post.id }}" class="btn btn-secondary btn-sm">Leer más</a>
+          {% if session and session.userId and (session.userId == post.userId or session.userRole == 'admin') %}
+            <a href="/posts/{{ post.id }}/edit" class="btn btn-warning btn-sm">Editar</a>
+          {% endif %}
+          {% if session and (session.userRole == 'admin' or session.userRole == 'editor') %}
+            <form action="/posts/{{ post.id }}/delete" method="POST" class="inline-form" onsubmit="return confirm('¿Estás seguro de eliminar esta publicación?')">
+              <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+            </form>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+{% endif %}
+{% endblock %}

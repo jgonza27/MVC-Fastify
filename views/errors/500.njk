@@ -1,0 +1,27 @@
+{% extends "layouts/main.njk" %}
+
+{% block description %}Error del servidor{% endblock %}
+{% block title %}500 - Error del Servidor{% endblock %}
+
+{% block content %}
+<div class="error-page">
+  <div class="error-code">500</div>
+  <h1>Error del Servidor</h1>
+  <p>Ha ocurrido un error interno en el servidor.</p>
+
+  {% if error %}
+    <div class="error-details card">
+      <h3>Detalles del error:</h3>
+      <p><strong>Mensaje:</strong> {{ error.message }}</p>
+      {% if error.stack %}
+        <pre class="error-stack"><code>{{ error.stack }}</code></pre>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="error-actions">
+    <a href="/" class="btn btn-primary">Volver al Inicio</a>
+    <a href="/posts" class="btn btn-secondary">Ver Publicaciones</a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "layouts/main.njk" %}
+
+{% block description %}Acerca de la aplicación MVC Fastify{% endblock %}
+{% block title %}Acerca de{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1>Acerca de esta Aplicación</h1>
+  <p class="subtitle">Ruta estática de ejemplo: <code>/about</code></p>
+</div>
+
+<div class="card">
+  <h2>MVC Fastify</h2>
+  <p>Esta aplicación demuestra el patrón <strong>Modelo-Vista-Controlador (MVC)</strong> implementado con el framework <strong>Fastify</strong> para Node.js.</p>
+
+  <h3>Tecnologías Utilizadas</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Componente</th>
+        <th>Tecnología</th>
+        <th>Descripción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Framework</td>
+        <td>Fastify</td>
+        <td>Framework web de alto rendimiento para Node.js</td>
+      </tr>
+      <tr>
+        <td>Motor de Plantillas</td>
+        <td>Nunjucks</td>
+        <td>Motor de plantillas con herencia, filtros y macros</td>
+      </tr>
+      <tr>
+        <td>ORM</td>
+        <td>Sequelize</td>
+        <td>ORM para SQL con soporte de modelos y migraciones</td>
+      </tr>
+      <tr>
+        <td>Base de Datos</td>
+        <td>SQLite</td>
+        <td>Base de datos ligera basada en archivo</td>
+      </tr>
+      <tr>
+        <td>Sesiones</td>
+        <td>@fastify/session</td>
+        <td>Gestión de sesiones del servidor</td>
+      </tr>
+      <tr>
+        <td>Seguridad</td>
+        <td>bcrypt</td>
+        <td>Hash de contraseñas con sal</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Estructura del Proyecto</h3>
+  <pre><code>MVC-Fastify/
+├── src/
+│   ├── app.js
+│   ├── config/database.js
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── middlewares/
+│   └── migrations/
+├── views/
+└── public/</code></pre>
+</div>
+{% endblock %}
